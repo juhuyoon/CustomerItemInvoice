@@ -9,8 +9,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 @SpringBootTest
 public class U1M6SummativeApplicationTests {
 
-	@Test
+	/*@Test
 	public void contextLoads() {
 	}
-
+*/
 }
