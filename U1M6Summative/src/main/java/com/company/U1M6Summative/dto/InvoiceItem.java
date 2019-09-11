@@ -13,11 +13,17 @@ public class InvoiceItem {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name="invoice_item_id", nullable=false, length=11, unique=true)
     private Integer id;
+    @Column(name="invoice_id", nullable=false, length=11)
     private Integer invoiceId;
+    @Column(name="item_id", nullable=false, length=11)
     private Integer itemId;
+    @Column(name="quantity", nullable=false, length=11)
     private Integer quantity;
+    @Column(name="unit_rate", nullable=false, columnDefinition = "Decimal(8,2)")
     private BigDecimal unitRate;
+    @Column(name="discount", nullable=false, columnDefinition = "Decimal(8,2)")
     private BigDecimal discount;
 
 
