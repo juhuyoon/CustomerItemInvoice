@@ -34,6 +34,11 @@ public class InvoiceServiceLayer {
         invoice = invoiceRepo.save(invoice);
 
         List<InvoiceItem> invoiceItemList = ivm.getInvoiceItemList();
+        invoiceItemList.stream()
+                .forEach(invoiceItem -> {
+                    invoiceItem.setInvoiceId(ivm.getId());
+                    invoiceItemRepo.save(invoiceItem);
+                });
 
         return ivm;
     }
