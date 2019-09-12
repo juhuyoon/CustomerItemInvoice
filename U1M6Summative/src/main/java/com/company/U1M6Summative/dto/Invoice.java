@@ -21,8 +21,8 @@ public class Invoice {
     private LocalDate returnDate;
     private BigDecimal lateFee;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "customerId")
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "customerId")
 
     public Integer getId() {
         return id;
