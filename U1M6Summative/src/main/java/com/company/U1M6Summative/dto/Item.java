@@ -13,9 +13,13 @@ import java.util.Set;
 public class Item {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name="item_id", nullable = false, length = 11, unique = true)
     private Integer id;
+    @Column(name="name", nullable = false, length = 50)
     private String name;
+    @Column(name="description")
     private String description;
+    @Column(name="daily_rate", nullable = false, columnDefinition = "Decimal(8,2)")
     private BigDecimal dailyRate;
 
     @OneToMany(mappedBy = "itemId",
