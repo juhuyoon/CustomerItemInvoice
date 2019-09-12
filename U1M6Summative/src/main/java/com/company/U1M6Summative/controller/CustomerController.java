@@ -21,7 +21,7 @@ public class CustomerController {
   @RequestMapping(value="/customer/{customerId}", method = RequestMethod.GET)
     public Customer getCustomerById(@PathVariable(name= "customerId") Integer id){
 
-      return customerRepo.findOne(id);
+      return customerRepo.getOne(id);
   }
 
   @RequestMapping(value="/customer/{customerId}", method = RequestMethod.PUT)
@@ -31,7 +31,7 @@ public class CustomerController {
 
   @RequestMapping(value="/customer/{customerId}", method = RequestMethod.DELETE)
     public void deleteCustomer(@PathVariable(name = "customerId") Integer id){
-      customerRepo.delete(id);
+      customerRepo.deleteById(id);
   }
 
   @RequestMapping(value="/customers", method = RequestMethod.GET)
