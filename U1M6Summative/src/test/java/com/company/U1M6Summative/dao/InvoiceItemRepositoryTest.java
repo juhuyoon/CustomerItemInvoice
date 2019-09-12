@@ -158,7 +158,6 @@ public class InvoiceItemRepositoryTest {
         assertEquals((int) invoiceItem2.getId(), (int) invoiceItem.getId());
 
     }
-
     @Test
     public void findByInvoiceId() {
         Customer customer = new Customer();
@@ -202,8 +201,4 @@ public class InvoiceItemRepositoryTest {
 
         assertEquals(invoiceItemList.size(), 1);
     }
-
-
-
-
 }

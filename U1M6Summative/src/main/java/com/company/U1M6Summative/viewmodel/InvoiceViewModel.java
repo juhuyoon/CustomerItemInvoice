@@ -16,7 +16,7 @@ public class InvoiceViewModel {
     private LocalDate pickupDate;
     private LocalDate returnDate;
     private BigDecimal lateFee;
-    private List<InvoiceItem> invoiceItemList= new ArrayList<>();
+    private List<InvoiceItem> invoiceItemList = new ArrayList<>();
 
     public int getId() {
         return id;
