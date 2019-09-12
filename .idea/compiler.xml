@@ -15,11 +15,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-<<<<<<< HEAD
       <module name="U1M6Summative" options="-parameters" />
-=======
-      <module name="U1M6Summative" options="" />
->>>>>>> 46e0cb1a06aa2b71ac8425747651ee5efa09c847
     </option>
   </component>
 </project>
