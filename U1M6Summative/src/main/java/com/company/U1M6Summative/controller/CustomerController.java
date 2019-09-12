@@ -21,7 +21,7 @@
 //  @RequestMapping(value="/customer/{customerId}", method = RequestMethod.GET)
 //    public Customer getCustomerById(@PathVariable(name= "customerId") Integer id){
 //
-//      return customerRepo.getOne(id);
+//      return customerRepo.findOne(id);
 //  }
 //
 //  @RequestMapping(value="/customer/{customerId}", method = RequestMethod.PUT)
@@ -31,7 +31,7 @@
 //
 //  @RequestMapping(value="/customer/{customerId}", method = RequestMethod.DELETE)
 //    public void deleteCustomer(@PathVariable(name = "customerId") Integer id){
-//      customerRepo.deleteById(id);
+//      customerRepo.delete(id);
 //  }
 //
 //  @RequestMapping(value="/customers", method = RequestMethod.GET)
