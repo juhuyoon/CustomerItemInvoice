@@ -159,6 +159,50 @@ public class InvoiceItemRepositoryTest {
 
     }
 
+    @Test
+    public void findByInvoiceId() {
+        Customer customer = new Customer();
+        customer.setCustomerId(1);
+        customer.setFirstName("Jung");
+        customer.setLastName("Yoon");
+        customer.setEmail("jung@yah.com");
+        customer.setCompany("Cognizant");
+        customer.setPhone("111-111-1111");
+
+        customerRepository.save(customer);
+
+        Item item = new Item();
+        item.setId(1);
+        item.setName("Cheese");
+        item.setDescription("It's sweet and delicious");
+        item.setDailyRate(new BigDecimal(15.55));
+
+        itemRepository.save(item);
+
+        Invoice invoice = new Invoice();
+        invoice.setId(1);
+        invoice.setCustomerId(customer.getCustomerId());
+        invoice.setOrderDate(LocalDate.of(2019,04,19));
+        invoice.setPickupDate(LocalDate.of(2019, 05, 10));
+        invoice.setReturnDate(LocalDate.of(2019, 06,10));
+        invoice.setLateFee(new BigDecimal("15.50"));
+
+        invoiceRepository.save(invoice);
+
+        InvoiceItem invoiceItem = new InvoiceItem();
+        invoiceItem.setInvoiceId(invoice.getId());
+        invoiceItem.setItemId(item.getId());
+        invoiceItem.setQuantity(10);
+        invoiceItem.setUnitRate(new BigDecimal("10.00"));
+        invoiceItem.setDiscount(new BigDecimal("5.00"));
+
+        invoiceItemRepository.save(invoiceItem);
+
+        List<InvoiceItem> invoiceItemList = invoiceItemRepository.findByInvoiceId(invoice.getId());
+
+        assertEquals(invoiceItemList.size(), 1);
+    }
+
 
 
 
