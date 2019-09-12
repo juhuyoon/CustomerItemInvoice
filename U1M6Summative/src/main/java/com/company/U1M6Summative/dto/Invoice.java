@@ -28,12 +28,18 @@ public class Invoice {
     @Column(name = "late_fee", nullable = false, columnDefinition = "Decimal(8,2)")
     private BigDecimal lateFee;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "customer_id")
 
-//    @OneToMany(cascade =  CascadeType.ALL)
-//    @JoinColumn(name = "invoice_id")
-//    private InvoiceItem invoiceItems;
+
+    @OneToMany(mappedBy = "invoiceId",  cascade =  CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+    private Set<InvoiceItem> invoiceItems;
+
+    public Set<InvoiceItem> getInvoiceItems() {
+        return invoiceItems;
+    }
+
+    public void setInvoiceItems(Set<InvoiceItem> invoiceItems) {
+        this.invoiceItems = invoiceItems;
+    }
 
     public Integer getId() {
         return id;
@@ -41,6 +47,18 @@ public class Invoice {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "customer_id", insertable = false, updatable = false)
+    private Customer customer;
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 
     public Integer getCustomerId() {
