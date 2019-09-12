@@ -32,6 +32,7 @@ public class InvoiceServiceLayer {
         invoice.setReturnDate(ivm.getReturnDate());
         invoice.setLateFee(ivm.getLateFee());
         invoice = invoiceRepo.save(invoice);
+        ivm.setId(invoice.getId());
 
         List<InvoiceItem> invoiceItemList = ivm.getInvoiceItemList();
         invoiceItemList.stream()
@@ -40,7 +41,16 @@ public class InvoiceServiceLayer {
                     invoiceItemRepo.save(invoiceItem);
                 });
 
+        invoiceItemList = invoiceItemRepo.findByInvoiceId(ivm.getId());
+        ivm.setInvoiceItemList(invoiceItemList);
+
         return ivm;
     }
+
+//    public InvoiceViewModel buildInvoiceViewModel(Invoice invoice) {
+//        //List of associated invoice items
+//        List<InvoiceItem> invoiceItemList = invoiceItemRepo.findByInvoiceId(invoice.getId());
+//
+//    }
 
 }
