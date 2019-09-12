@@ -6,6 +6,7 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
@@ -14,15 +15,31 @@ public class Invoice {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "invoice_id", nullable = false, length = 11, unique = true)
     private Integer id;
+    @Column(name = "customer_id", nullable = false, length = 11)
     private Integer customerId;
+    @Column(name = "order_date", nullable = false)
     private LocalDate orderDate;
+    @Column(name = "pickup_date", nullable = false)
     private LocalDate pickupDate;
+    @Column(name = "return_date", nullable = false)
     private LocalDate returnDate;
+    @Column(name = "late_fee", nullable = false, columnDefinition = "Decimal(8,2)")
     private BigDecimal lateFee;
 
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "customerId")
+
+
+    @OneToMany(mappedBy = "invoiceId",  cascade =  CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+    private Set<InvoiceItem> invoiceItems;
+
+    public Set<InvoiceItem> getInvoiceItems() {
+        return invoiceItems;
+    }
+
+    public void setInvoiceItems(Set<InvoiceItem> invoiceItems) {
+        this.invoiceItems = invoiceItems;
+    }
 
     public Integer getId() {
         return id;
@@ -30,6 +47,18 @@ public class Invoice {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "customer_id", insertable = false, updatable = false)
+    private Customer customer;
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 
     public Integer getCustomerId() {
@@ -77,12 +106,12 @@ public class Invoice {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Invoice invoice = (Invoice) o;
-        return Objects.equals(id, invoice.id) &&
-                Objects.equals(customerId, invoice.customerId) &&
-                Objects.equals(orderDate, invoice.orderDate) &&
-                Objects.equals(pickupDate, invoice.pickupDate) &&
-                Objects.equals(returnDate, invoice.returnDate) &&
-                Objects.equals(lateFee, invoice.lateFee);
+        return id.equals(invoice.id) &&
+                customerId.equals(invoice.customerId) &&
+                orderDate.equals(invoice.orderDate) &&
+                pickupDate.equals(invoice.pickupDate) &&
+                returnDate.equals(invoice.returnDate) &&
+                lateFee.equals(invoice.lateFee);
     }
 
     @Override
