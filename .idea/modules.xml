@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/CustomerItemInvoice.iml" filepath="$PROJECT_DIR$/.idea/CustomerItemInvoice.iml" />
       <module fileurl="file://$PROJECT_DIR$/U1M6Summative/U1M6Summative.iml" filepath="$PROJECT_DIR$/U1M6Summative/U1M6Summative.iml" />
     </modules>
   </component>

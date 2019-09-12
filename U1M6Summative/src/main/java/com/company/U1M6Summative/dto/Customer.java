@@ -1,28 +1,28 @@
 package com.company.U1M6Summative.dto;
 
-import com.fasterxml.jackson.annotation.*;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import org.springframework.data.annotation.Id;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Objects;
-
 
 @Entity
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Table(name="customer")
-
 public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name="customer_id", nullable=false, length=11, unique=true)
     private Integer customerId;
-    private String first_name;
-    private String last_name;
+    @Column(name="first_name", nullable=false, length=50)
+    private String firstName;
+    @Column(name="last_name", nullable=false, length=50)
+    private String lastName;
+    @Column(name="email", nullable=false, length=75)
     private String email;
+    @Column(name="company", nullable=false, length=50)
     private String company;
+    @Column(name="phone", nullable=false, length=50)
     private String phone;
 
     public Integer getCustomerId() {
@@ -33,20 +33,20 @@ public class Customer {
         this.customerId = customerId;
     }
 
-    public String getFirst_name() {
-        return first_name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setFirst_name(String first_name) {
-        this.first_name = first_name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getLast_name() {
-        return last_name;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setLast_name(String last_name) {
-        this.last_name = last_name;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getEmail() {
@@ -79,8 +79,8 @@ public class Customer {
         if (o == null || getClass() != o.getClass()) return false;
         Customer customer = (Customer) o;
         return customerId.equals(customer.customerId) &&
-                first_name.equals(customer.first_name) &&
-                last_name.equals(customer.last_name) &&
+                firstName.equals(customer.firstName) &&
+                lastName.equals(customer.lastName) &&
                 email.equals(customer.email) &&
                 company.equals(customer.company) &&
                 phone.equals(customer.phone);
@@ -88,6 +88,6 @@ public class Customer {
 
     @Override
     public int hashCode() {
-        return Objects.hash(customerId, first_name, last_name, email, company, phone);
+        return Objects.hash(customerId, firstName, lastName, email, company, phone);
     }
 }
