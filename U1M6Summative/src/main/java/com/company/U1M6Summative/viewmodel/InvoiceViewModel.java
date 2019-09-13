@@ -2,6 +2,10 @@ package com.company.U1M6Summative.viewmodel;
 
 import com.company.U1M6Summative.dto.InvoiceItem;
 
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -10,27 +14,40 @@ import java.util.Objects;
 
 public class InvoiceViewModel {
 
-    private Integer id;
-    private Integer customerId;
+    @NotNull
+    @Size(max = 11)
+    private int id;
+    @NotNull
+    @Size(max = 11)
+    private int customerId;
+    @NotNull
+
     private LocalDate orderDate;
+
     private LocalDate pickupDate;
+
     private LocalDate returnDate;
+
+    @NotNull
+    @Digits(integer = 8, fraction = 2)
     private BigDecimal lateFee;
+
+    @NotEmpty
     private List<InvoiceItemViewModel> invoiceItemViewModelList = new ArrayList<>();
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public Integer getCustomerId() {
+    public int getCustomerId() {
         return customerId;
     }
 
-    public void setCustomerId(Integer customerId) {
+    public void setCustomerId(int customerId) {
         this.customerId = customerId;
     }
 
@@ -79,8 +96,8 @@ public class InvoiceViewModel {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         InvoiceViewModel that = (InvoiceViewModel) o;
-        return Objects.equals(id, that.id) &&
-                Objects.equals(customerId, that.customerId) &&
+        return id == that.id &&
+                customerId == that.customerId &&
                 Objects.equals(orderDate, that.orderDate) &&
                 Objects.equals(pickupDate, that.pickupDate) &&
                 Objects.equals(returnDate, that.returnDate) &&

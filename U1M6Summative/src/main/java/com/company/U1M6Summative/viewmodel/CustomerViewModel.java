@@ -3,17 +3,34 @@ package com.company.U1M6Summative.viewmodel;
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 public class CustomerViewModel {
+
+    @NotNull
+    @Size(max = 11)
     private Integer customerId;
+    @NotEmpty
+    @Size(max = 50)
     private String firstName;
+    @NotEmpty
+    @Size(max = 50)
     private String lastName;
+    @NotEmpty
+    @Size(max = 75)
     private String email;
+    @NotEmpty
+    @Size(max = 50)
     private String company;
+    @NotEmpty
+    @Size(max = 50)
     private String phone;
+    @NotEmpty
     private List<InvoiceViewModel> invoiceViewModelsList = new ArrayList<>();
 
     public Integer getCustomerId() {
