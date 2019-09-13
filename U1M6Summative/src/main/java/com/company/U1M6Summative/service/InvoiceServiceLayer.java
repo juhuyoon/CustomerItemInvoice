@@ -82,7 +82,7 @@ public class InvoiceServiceLayer implements InvoiceViewDao {
     }
 
     @Override
-    public List<InvoiceViewModel> getIvmByCustomer(int customerId) {
+    public List<InvoiceViewModel> getIvmByCustomer(Integer customerId) {
         return null;
     }
 }

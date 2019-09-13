@@ -1,16 +1,32 @@
 package com.company.U1M6Summative.viewmodel;
 
 import com.company.U1M6Summative.dto.Item;
+import org.springframework.stereotype.Service;
 
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.math.BigDecimal;
 import java.util.Objects;
 
 public class InvoiceItemViewModel {
+    @NotNull
+    @Size(max = 11)
     private int id;
+    @NotNull
+    @Size(max = 11)
     private int invoiceId;
+    @NotEmpty
     private Item item;
+    @NotNull
+    @Size(max = 11)
     private int quantity;
+    @NotNull
+    @Digits(integer=8, fraction=2)
     private BigDecimal unitRate;
+    @NotNull
+    @Digits(integer=8, fraction=2)
     private BigDecimal discount;
 
     public int getId() {

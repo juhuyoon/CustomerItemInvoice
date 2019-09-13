@@ -16,5 +16,5 @@ public interface InvoiceViewDao {
 
     void deleteIvm(int invoiceId);
 
-    List<InvoiceViewModel> getIvmByCustomer(int customerId);
+    List<InvoiceViewModel> getIvmByCustomer(Integer customerId);
 }
