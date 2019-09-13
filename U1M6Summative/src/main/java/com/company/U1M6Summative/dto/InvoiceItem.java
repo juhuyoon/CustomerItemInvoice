@@ -26,7 +26,6 @@ public class InvoiceItem {
     @Column(name="discount", nullable=false, columnDefinition = "Decimal(8,2)")
     private BigDecimal discount;
 
-
     public Integer getId() {
         return id;
     }
