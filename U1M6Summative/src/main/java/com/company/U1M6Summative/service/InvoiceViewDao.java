@@ -8,13 +8,13 @@ public interface InvoiceViewDao {
 
     InvoiceViewModel saveIvm(InvoiceViewModel ivm);
 
-    InvoiceViewModel getIvm(int invoiceId);
+    InvoiceViewModel getIvm(Integer invoiceId);
 
     List<InvoiceViewModel> getAllIvm();
 
     void updateIvm(InvoiceViewModel ivm);
 
-    void deleteIvm(int invoiceId);
+    void deleteIvm(Integer invoiceId);
 
-    List<InvoiceViewModel> getIvmByCustomer(int customerId);
+    List<InvoiceViewModel> getIvmByCustomer(Integer customerId);
 }

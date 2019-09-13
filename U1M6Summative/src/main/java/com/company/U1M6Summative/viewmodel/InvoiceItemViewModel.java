@@ -6,26 +6,26 @@ import java.math.BigDecimal;
 import java.util.Objects;
 
 public class InvoiceItemViewModel {
-    private int id;
-    private int invoiceId;
+    private Integer id;
+    private Integer invoiceId;
     private Item item;
-    private int quantity;
+    private Integer quantity;
     private BigDecimal unitRate;
     private BigDecimal discount;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public int getInvoiceId() {
+    public Integer getInvoiceId() {
         return invoiceId;
     }
 
-    public void setInvoiceId(int invoiceId) {
+    public void setInvoiceId(Integer invoiceId) {
         this.invoiceId = invoiceId;
     }
 
@@ -37,11 +37,11 @@ public class InvoiceItemViewModel {
         this.item = item;
     }
 
-    public int getQuantity() {
+    public Integer getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
+    public void setQuantity(Integer quantity) {
         this.quantity = quantity;
     }
 
@@ -66,10 +66,10 @@ public class InvoiceItemViewModel {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         InvoiceItemViewModel that = (InvoiceItemViewModel) o;
-        return id == that.id &&
-                invoiceId == that.invoiceId &&
-                quantity == that.quantity &&
+        return Objects.equals(id, that.id) &&
+                Objects.equals(invoiceId, that.invoiceId) &&
                 Objects.equals(item, that.item) &&
+                Objects.equals(quantity, that.quantity) &&
                 Objects.equals(unitRate, that.unitRate) &&
                 Objects.equals(discount, that.discount);
     }
