@@ -9,7 +9,7 @@ import java.util.List;
 public interface CustomerViewDao {
     CustomerViewModel addCustomerVM(CustomerViewModel customerViewModel);
 
-    CustomerViewModel getCustomerVM(CustomerViewModel customerViewModel);
+    CustomerViewModel getCustomerVM(Integer customerId);
 
     List<CustomerViewModel> getAllCustomersVM();
 
