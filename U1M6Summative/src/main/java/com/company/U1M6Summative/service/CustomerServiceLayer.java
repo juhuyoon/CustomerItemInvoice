@@ -34,7 +34,9 @@ public class CustomerServiceLayer {
         customer = customerRepository.save(customer);
         viewModel.setCustomerId(customer.getCustomerId());
 
-        List<InvoiceViewModel> invoices = viewModel.getInvoiceViewModelsList();
+        return viewModel;
+
+//        List<InvoiceViewModel> invoices = viewModel.getInvoiceViewModelsList();
 
 //        invoices.stream()
 //                .forEach(i ->
@@ -48,6 +50,6 @@ public class CustomerServiceLayer {
 //
 //    return invoices;
 //    }
-        return null;
+//        return null;
     }
 }

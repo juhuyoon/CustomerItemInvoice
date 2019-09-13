@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Component
@@ -68,8 +69,13 @@ public class InvoiceServiceLayer implements InvoiceViewDao {
 
     @Override
     public List<InvoiceViewModel> getAllIvm() {
-        return null;
+
     }
+
+//    @Override
+//    public List<Invoice> getAllIvm() {
+//        return invoiceRepo.findAll();
+//    }
 
     @Override
     public void updateIvm(InvoiceViewModel ivm) {

@@ -1,6 +1,8 @@
 package com.company.U1M6Summative.controller;
 import com.company.U1M6Summative.dao.CustomerRepository;
 import com.company.U1M6Summative.dto.Customer;
+import com.company.U1M6Summative.service.CustomerServiceLayer;
+import com.company.U1M6Summative.service.InvoiceServiceLayer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,9 +13,11 @@ import java.util.Optional;
 public class CustomerController {
   @Autowired
   private CustomerRepository customerRepo;
+  private CustomerServiceLayer customerService;
 
   @RequestMapping(value="/customer", method = RequestMethod.POST)
     public Customer createCustomer(@RequestBody Customer customer){
+
       customerRepo.save(customer);
       return customer;
   }
