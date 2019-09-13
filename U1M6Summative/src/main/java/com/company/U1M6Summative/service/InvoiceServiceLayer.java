@@ -4,6 +4,7 @@ import com.company.U1M6Summative.dao.InvoiceItemRepository;
 import com.company.U1M6Summative.dao.InvoiceRepository;
 import com.company.U1M6Summative.dto.Invoice;
 import com.company.U1M6Summative.dto.InvoiceItem;
+import com.company.U1M6Summative.viewmodel.InvoiceItemViewModel;
 import com.company.U1M6Summative.viewmodel.InvoiceViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -12,7 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Component
-public class InvoiceServiceLayer {
+public class InvoiceServiceLayer implements InvoiceViewDao {
 
     private InvoiceItemRepository invoiceItemRepo;
     private InvoiceRepository invoiceRepo;
@@ -24,7 +25,14 @@ public class InvoiceServiceLayer {
     }
 
     @Transactional
-    public InvoiceViewModel saveInvoice(InvoiceViewModel ivm) {
+    public InvoiceItemViewModel saveIivm(InvoiceItemViewModel iivm) {
+
+        return iivm;
+    }
+
+    @Override
+    @Transactional
+    public InvoiceViewModel saveIvm(InvoiceViewModel ivm) {
         Invoice invoice = new Invoice();
         invoice.setCustomerId(ivm.getCustomerId());
         invoice.setOrderDate(ivm.getOrderDate());
@@ -34,15 +42,14 @@ public class InvoiceServiceLayer {
         invoice = invoiceRepo.save(invoice);
         ivm.setId(invoice.getId());
 
-        List<InvoiceItem> invoiceItemList = ivm.getInvoiceItemList();
-        invoiceItemList.stream()
-                .forEach(invoiceItem -> {
-                    invoiceItem.setInvoiceId(ivm.getId());
-                    invoiceItemRepo.save(invoiceItem);
+        List<InvoiceItemViewModel> invoiceItemViewModelList = ivm.getInvoiceItemViewModelList();
+        invoiceItemViewModelList.stream()
+                .forEach(invoiceItemViewModel -> {
+                    invoiceItemViewModel.setInvoiceId(ivm.getId());
                 });
 
-        invoiceItemList = invoiceItemRepo.findByInvoiceId(ivm.getId());
-        ivm.setInvoiceItemList(invoiceItemList);
+//        invoiceItemViewModelList = invoiceItemRepo.findByInvoiceId(ivm.getId());
+//        ivm.setInvoiceItemViewModelList(invoiceItemViewModelList);
 
         return ivm;
     }
@@ -53,4 +60,29 @@ public class InvoiceServiceLayer {
 //
 //    }
 
+
+    @Override
+    public InvoiceViewModel getIvm(int invoiceId) {
+        return null;
+    }
+
+    @Override
+    public List<InvoiceViewModel> getAllIvm() {
+        return null;
+    }
+
+    @Override
+    public void updateIvm(InvoiceViewModel ivm) {
+
+    }
+
+    @Override
+    public void deleteIvm(int invoiceId) {
+
+    }
+
+    @Override
+    public List<InvoiceViewModel> getIvmByCustomer(int customerId) {
+        return null;
+    }
 }
