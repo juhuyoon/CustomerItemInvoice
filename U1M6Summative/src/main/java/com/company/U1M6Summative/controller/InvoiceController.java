@@ -1,14 +1,13 @@
 package com.company.U1M6Summative.controller;
 
-import com.company.U1M6Summative.dto.Invoice;
 import com.company.U1M6Summative.service.CustomerServiceLayer;
 import com.company.U1M6Summative.service.InvoiceServiceLayer;
+import com.company.U1M6Summative.viewmodel.CustomerViewModel;
 import com.company.U1M6Summative.viewmodel.InvoiceViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -46,7 +45,9 @@ public class InvoiceController {
     @ResponseStatus(value = HttpStatus.CREATED)
     public InvoiceViewModel getByCustomer(@PathVariable int customerId){
 
-        return invoiceService.getIvmByCustomer(customerService.g);
+        CustomerViewModel customerId2 = customerService.getCustomerVM(customerId);
+
+        return invoiceService.getIvmByCustomer(customerService.getCustomerVM(customerId2));
 
         throw new IllegalArgumentException("Customer's invoice not found");
     }

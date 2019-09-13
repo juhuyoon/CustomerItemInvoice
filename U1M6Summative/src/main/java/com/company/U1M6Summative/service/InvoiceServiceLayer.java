@@ -1,11 +1,14 @@
 package com.company.U1M6Summative.service;
 
+import com.company.U1M6Summative.dao.CustomerRepository;
 import com.company.U1M6Summative.dao.InvoiceItemRepository;
 import com.company.U1M6Summative.dao.InvoiceRepository;
 import com.company.U1M6Summative.dao.ItemRepository;
+import com.company.U1M6Summative.dto.Customer;
 import com.company.U1M6Summative.dto.Invoice;
 import com.company.U1M6Summative.dto.InvoiceItem;
 import com.company.U1M6Summative.dto.Item;
+import com.company.U1M6Summative.viewmodel.CustomerViewModel;
 import com.company.U1M6Summative.viewmodel.InvoiceItemViewModel;
 import com.company.U1M6Summative.viewmodel.InvoiceViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,18 +17,21 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class InvoiceServiceLayer implements InvoiceViewDao {
 
     private InvoiceItemRepository invoiceItemRepo;
+    private CustomerRepository customerRepo;
     private InvoiceRepository invoiceRepo;
     private ItemRepository itemRepo;
 
     @Autowired
-    public InvoiceServiceLayer(InvoiceItemRepository invoiceItemRepo, InvoiceRepository invoiceRepo) {
+    public InvoiceServiceLayer(InvoiceItemRepository invoiceItemRepo, CustomerRepository customerRepo, InvoiceRepository invoiceRepo) {
         this.invoiceItemRepo = invoiceItemRepo;
         this.invoiceRepo = invoiceRepo;
+        this.customerRepo = customerRepo;
     }
 
     @Transactional
@@ -185,7 +191,8 @@ public class InvoiceServiceLayer implements InvoiceViewDao {
 
     @Override
     public List<InvoiceViewModel> getIvmByCustomer(Integer customerId) {
-        List<Invoice> invoiceList = invoiceRepo.findInvoicesByCustomerId(customerId);
+        Optional<Customer> customerList = customerRepo.findById(customerId);
+        List<Invoice> invoiceList = invoiceRepo.findInvoicesByCustomerId(customerRepo.findById(customerId));
         List<InvoiceViewModel> ivmList = new ArrayList<>();
 
         for (Invoice invoice : invoiceList) {
