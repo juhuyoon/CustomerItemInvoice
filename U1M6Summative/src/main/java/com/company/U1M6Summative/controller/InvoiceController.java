@@ -46,9 +46,7 @@ public class InvoiceController {
     @ResponseStatus(value = HttpStatus.CREATED)
     public InvoiceViewModel getByCustomer(@PathVariable int customerId){
 
-        InvoiceViewModel invoice = invoiceService.getIvmByCustomer();
-
-        List<InvoiceViewModel> invoiceList = new ArrayList<>();
+        return invoiceService.getIvmByCustomer(customerService.g);
 
         throw new IllegalArgumentException("Customer's invoice not found");
     }

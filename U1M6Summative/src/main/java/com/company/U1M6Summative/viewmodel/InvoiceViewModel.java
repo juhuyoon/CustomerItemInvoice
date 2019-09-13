@@ -10,27 +10,27 @@ import java.util.Objects;
 
 public class InvoiceViewModel {
 
-    private int id;
-    private int customerId;
+    private Integer id;
+    private Integer customerId;
     private LocalDate orderDate;
     private LocalDate pickupDate;
     private LocalDate returnDate;
     private BigDecimal lateFee;
     private List<InvoiceItemViewModel> invoiceItemViewModelList = new ArrayList<>();
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public int getCustomerId() {
+    public Integer getCustomerId() {
         return customerId;
     }
 
-    public void setCustomerId(int customerId) {
+    public void setCustomerId(Integer customerId) {
         this.customerId = customerId;
     }
 
@@ -79,8 +79,8 @@ public class InvoiceViewModel {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         InvoiceViewModel that = (InvoiceViewModel) o;
-        return id == that.id &&
-                customerId == that.customerId &&
+        return Objects.equals(id, that.id) &&
+                Objects.equals(customerId, that.customerId) &&
                 Objects.equals(orderDate, that.orderDate) &&
                 Objects.equals(pickupDate, that.pickupDate) &&
                 Objects.equals(returnDate, that.returnDate) &&
