@@ -36,16 +36,18 @@ public class CustomerServiceLayer {
 
         List<InvoiceViewModel> invoices = viewModel.getInvoiceViewModelsList();
 
-        invoices.stream()
-                .forEach(i ->
-                        {
-                            i.setId(viewModel.getCustomerId());
-                            InvoiceViewInterface.saveInvoice(i);
-
-                        });
-
-       // invoices = invoiceRepository.findById(viewModel.getCustomerId());
-
-    return invoices;
+//        invoices.stream()
+//                .forEach(i ->
+//                        {
+//                            i.setId(viewModel.getCustomerId());
+//                            InvoiceViewInterface.saveInvoice(i);
+//
+//                        });
+//
+//       // invoices = invoiceRepository.findById(viewModel.getCustomerId());
+//
+//    return invoices;
+//    }
+        return null;
     }
 }
