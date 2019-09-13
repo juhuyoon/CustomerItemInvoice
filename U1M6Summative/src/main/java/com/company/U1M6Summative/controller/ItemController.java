@@ -21,6 +21,7 @@ public class ItemController {
     @RequestMapping(value = "/item", method = RequestMethod.POST)
     @ResponseStatus(value = HttpStatus.CREATED)
     public Item postItem(@RequestBody @Valid Item item) {
+
         return itemRepo.save(item);
     }
 
@@ -51,7 +52,6 @@ public class ItemController {
     @RequestMapping(value = "/item/{itemId}", method = RequestMethod.PUT)
     @ResponseStatus(value = HttpStatus.OK)
     public void updateItem(@PathVariable int itemId, @RequestBody Item item) {
-        Optional<Item> itemOp = itemRepo.findById(itemId);
 
         item.setId(itemId);
         itemRepo.save(item);
