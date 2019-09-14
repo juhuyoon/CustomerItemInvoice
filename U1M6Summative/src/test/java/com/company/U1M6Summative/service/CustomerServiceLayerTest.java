@@ -3,11 +3,15 @@ package com.company.U1M6Summative.service;
 
 import com.company.U1M6Summative.dao.CustomerRepository;
 import com.company.U1M6Summative.dto.Customer;
+import com.company.U1M6Summative.dto.Invoice;
 import com.company.U1M6Summative.viewmodel.CustomerViewModel;
+import com.company.U1M6Summative.viewmodel.InvoiceViewModel;
 import junit.framework.TestCase;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,27 +35,35 @@ public class CustomerServiceLayerTest {
     @Test
     public void saveFindFindAllCustomer() {
 
-        Customer customer = new Customer();
-        customer.setCustomerId(1);
-        customer.setFirstName("Angy");
-        customer.setLastName("Manni");
-        customer.setCompany("Amazon");
-        customer.setEmail("Angy@amazon.com");
-        customer.setPhone("678-229-7788");
-        customer = Service.addCustomer(customer);
+        CustomerViewModel cvm = new CustomerViewModel();
+        cvm.setFirstName("Angy");
+        cvm.setLastName("Manni");
+        cvm.setCompany("Amazon");
+        cvm.setEmail("Angy@amazon.com");
+        cvm.setPhone("678-229-7788");
 
-        Customer fromService = Service.getCustomerVM(customer.getCustomerId());
+        InvoiceViewModel ivm = new InvoiceViewModel();
+        ivm.setOrderDate(LocalDate.of(2019,5,20));
+        ivm.setPickupDate(LocalDate.of(2019,5, 22));
+        ivm.setReturnDate(LocalDate.of(2019, 5,25));
+        ivm.setLateFee(new BigDecimal(4.00));
 
-        assertEquals(customer, fromService);
-        List<Customer> cList = Service.getAllCustomersVM());
-        assertEquals(1, cList.size());
-        assertEquals(customer, cList.get(0));
+        //cvm.setInvoiceViewModelsList(
+        List<InvoiceViewModel > invoiceViewModelsList  = new ArrayList<>();
+        invoiceViewModelsList.add(ivm);
+
+        cvm = Service.addCustomerVM(cvm);
+
+        CustomerViewModel fromService = Service.getCustomerVM(cvm.getCustomerId());
+
+        assertEquals(cvm, fromService);
+
 
     }
 
     // Helper methods
     private void setUpCustomerRepositoryMock() {
-        customerRepo = mock(CustomerRepository);
+        customerRepo = mock(CustomerRepository.class);
         Customer aCustomer = new Customer();
 
         aCustomer.setCustomerId(1);
@@ -71,9 +83,9 @@ public class CustomerServiceLayerTest {
         List<Customer> customerList = new ArrayList<>();
         customerList.add( aCustomer);
 
-        doReturn(aCustomer).when(customerRepo).addCustomer(aCustomer2);
-        doReturn(aCustomer).when(customerRepo).getCustomer(1);
-        doReturn(customerList).when(customerRepo).getAllCustomers();
+        doReturn(aCustomer).when(customerRepo).save(customer2);
+        doReturn(aCustomer).when(customerRepo).getOne(1);
+        doReturn(customerList).when(customerRepo).findAll();
     }
 
     }

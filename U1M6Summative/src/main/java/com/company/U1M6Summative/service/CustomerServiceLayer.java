@@ -49,8 +49,8 @@ public class CustomerServiceLayer implements CustomerViewDao {
     }
 
     @Override
-    public CustomerViewModel getCustomerVM(CustomerViewModel customerViewModel) {
-        Customer customer = customerRepository.getOne(customerViewModel.getCustomerId());
+    public CustomerViewModel getCustomerVM(Integer customerId) {
+        Customer customer = customerRepository.getOne(customerId);
         return buildCustomerViewModel(customer);
     }
 
