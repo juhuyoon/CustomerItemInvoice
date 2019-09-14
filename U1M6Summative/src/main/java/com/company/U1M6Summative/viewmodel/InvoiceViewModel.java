@@ -2,6 +2,10 @@ package com.company.U1M6Summative.viewmodel;
 
 import com.company.U1M6Summative.dto.InvoiceItem;
 
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -10,12 +14,25 @@ import java.util.Objects;
 
 public class InvoiceViewModel {
 
+    @NotNull
+    @Size(max = 11)
     private int id;
+    @NotNull
+    @Size(max = 11)
     private int customerId;
+    @NotNull
+
     private LocalDate orderDate;
+
     private LocalDate pickupDate;
+
     private LocalDate returnDate;
+
+    @NotNull
+    @Digits(integer = 8, fraction = 2)
     private BigDecimal lateFee;
+
+    @NotEmpty
     private List<InvoiceItemViewModel> invoiceItemViewModelList = new ArrayList<>();
 
     public int getId() {

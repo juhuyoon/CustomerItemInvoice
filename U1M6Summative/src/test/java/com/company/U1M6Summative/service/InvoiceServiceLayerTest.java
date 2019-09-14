@@ -25,8 +25,6 @@ public class InvoiceServiceLayerTest {
     public void setUp() throws Exception {
         setUpInvoiceRepositoryMock();
         invoiceService = new InvoiceServiceLayer(InvoiceRepository);
-
-
     }
 
     @Test

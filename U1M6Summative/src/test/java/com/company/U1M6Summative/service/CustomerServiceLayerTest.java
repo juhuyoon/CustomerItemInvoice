@@ -1,7 +1,9 @@
+
 package com.company.U1M6Summative.service;
 
 import com.company.U1M6Summative.dao.CustomerRepository;
 import com.company.U1M6Summative.dto.Customer;
+import com.company.U1M6Summative.viewmodel.CustomerViewModel;
 import junit.framework.TestCase;
 import org.junit.Before;
 import org.junit.Test;
@@ -17,16 +19,17 @@ public class CustomerServiceLayerTest {
 
     CustomerServiceLayer Service;
     CustomerRepository customerRepo;
+    InvoiceViewDao invoiceViewDao;
 
     @Before
     public void setUp() throws Exception{
         setUpCustomerRepositoryMock();
 
-        Service = new CustomerServiceLayer(customerRepo);
+        Service = new CustomerServiceLayer(customerRepo, invoiceViewDao);
     }
 
     @Test
-    public void saveFindAllCustomer() {
+    public void saveFindFindAllCustomer() {
 
         Customer customer = new Customer();
         customer.setCustomerId(1);
@@ -35,12 +38,12 @@ public class CustomerServiceLayerTest {
         customer.setCompany("Amazon");
         customer.setEmail("Angy@amazon.com");
         customer.setPhone("678-229-7788");
+        customer = Service.addCustomer(customer);
 
-        customer = Service.saveCustomer(customer);
-        Customer fromService = Service.findCustomer(customer.getCustomerId());
+        Customer fromService = Service.getCustomerVM(customer.getCustomerId());
 
         assertEquals(customer, fromService);
-        List<Customer> cList = Service.findAllCustomers();
+        List<Customer> cList = Service.getAllCustomersVM());
         assertEquals(1, cList.size());
         assertEquals(customer, cList.get(0));
 
@@ -74,4 +77,5 @@ public class CustomerServiceLayerTest {
     }
 
     }
+
 
