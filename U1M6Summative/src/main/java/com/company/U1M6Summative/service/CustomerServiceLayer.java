@@ -7,11 +7,13 @@ import com.company.U1M6Summative.dto.Invoice;
 import com.company.U1M6Summative.viewmodel.CustomerViewModel;
 import com.company.U1M6Summative.viewmodel.InvoiceViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class CustomerServiceLayer implements CustomerViewDao {
     private CustomerRepository customerRepository;
     private InvoiceViewDao invoiceViewDao;
@@ -34,6 +36,7 @@ public class CustomerServiceLayer implements CustomerViewDao {
         customer.setCompany(customerViewModel.getCompany());
         customer.setPhone(customerViewModel.getPhone());
         customer = customerRepository.save(customer);
+
         customerViewModel.setCustomerId(customer.getCustomerId());
 
         List<InvoiceViewModel> ivmList = customerViewModel.getInvoiceViewModelsList();

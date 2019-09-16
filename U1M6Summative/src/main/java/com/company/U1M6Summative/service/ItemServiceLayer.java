@@ -8,18 +8,18 @@ import com.company.U1M6Summative.dao.ItemRepository;
 import com.company.U1M6Summative.dto.Item;
 import com.company.U1M6Summative.viewmodel.InvoiceViewModel;
 import com.company.U1M6Summative.viewmodel.ItemViewModel;
+import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class ItemServiceLayer implements ItemViewDao {
     private ItemRepository itemRepository;
-    private ItemViewDao itemViewDao;
 
-    public ItemServiceLayer(ItemRepository itemRepository, ItemViewDao itemViewDao) {
+    public ItemServiceLayer(ItemRepository itemRepository) {
         this.itemRepository = itemRepository;
-        this.itemViewDao = itemViewDao;
     }
 
     @Transactional
