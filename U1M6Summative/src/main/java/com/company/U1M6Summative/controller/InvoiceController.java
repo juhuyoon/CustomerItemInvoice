@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.awt.print.Book;
 import java.util.List;
 
 @RestController
@@ -41,14 +42,14 @@ public class InvoiceController {
         invoiceService.deleteIvm(invoiceId);
     }
 
-//    @RequestMapping(value = "/customer/{customerId}", method = RequestMethod.GET)
-//    @ResponseStatus(value = HttpStatus.OK)
-//    public List<InvoiceViewModel> getByCustomer(@PathVariable int customerId){
-//
-//
-//        return invoiceService.getIvmByCustomer(customerId);
-//
-////        throw new IllegalArgumentException("Customer's invoice not found");
-//    }
+    @RequestMapping(value = "/invoice/customer/{customerId}", method = RequestMethod.GET)
+    @ResponseStatus(value = HttpStatus.OK)
+    public List<InvoiceViewModel> getByCustomer(@PathVariable int customerId){
+
+
+        List<InvoiceViewModel> invoices = invoiceService.getIvmByCustomer(customerId);
+
+        return invoices;
+    }
 
 }
