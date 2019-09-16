@@ -1,8 +1,5 @@
 package com.company.U1M6Summative.service;
 
-
-public class ItemServiceLayer {
-
 import com.company.U1M6Summative.dao.InvoiceRepository;
 import com.company.U1M6Summative.dao.ItemRepository;
 import com.company.U1M6Summative.dto.Item;
