@@ -41,15 +41,14 @@ public class InvoiceController {
         invoiceService.deleteIvm(invoiceId);
     }
 
-    @RequestMapping(value = "/invoice/{customerId}", method = RequestMethod.GET)
-    @ResponseStatus(value = HttpStatus.CREATED)
-    public InvoiceViewModel getByCustomer(@PathVariable int customerId){
-
-        CustomerViewModel customerId2 = customerService.getCustomerVM(customerId);
-
-        return invoiceService.getIvmByCustomer(customerService.getCustomerVM(customerId2));
-
-        throw new IllegalArgumentException("Customer's invoice not found");
-    }
+//    @RequestMapping(value = "/customer/{customerId}", method = RequestMethod.GET)
+//    @ResponseStatus(value = HttpStatus.OK)
+//    public List<InvoiceViewModel> getByCustomer(@PathVariable int customerId){
+//
+//
+//        return invoiceService.getIvmByCustomer(customerId);
+//
+////        throw new IllegalArgumentException("Customer's invoice not found");
+//    }
 
 }

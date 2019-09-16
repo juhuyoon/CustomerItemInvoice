@@ -17,7 +17,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Component
 public class InvoiceServiceLayer implements InvoiceViewDao {
@@ -191,8 +190,7 @@ public class InvoiceServiceLayer implements InvoiceViewDao {
 
     @Override
     public List<InvoiceViewModel> getIvmByCustomer(Integer customerId) {
-        Optional<Customer> customerList = customerRepo.findById(customerId);
-        List<Invoice> invoiceList = invoiceRepo.findInvoicesByCustomerId(customerRepo.findById(customerId));
+        List<Invoice> invoiceList = invoiceRepo.findInvoicesByCustomerId(customerId);
         List<InvoiceViewModel> ivmList = new ArrayList<>();
 
         for (Invoice invoice : invoiceList) {
